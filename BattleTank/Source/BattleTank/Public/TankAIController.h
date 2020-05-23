@@ -3,10 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Tank.h"
 #include "AIController.h"
 #include "TankAIController.generated.h"
 
+
+class ATank;
 /**
  * 
  */
@@ -20,4 +21,5 @@ public:
 	ATank* GetPlayerTank() const;
 	
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
 };
