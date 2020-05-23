@@ -4,6 +4,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "TankaimingComponent.h"
 #include "TankBarrel.h"
+#include "TankTurret.h"
 
 // Sets default values for this component's properties
 UTankaimingComponent::UTankaimingComponent()

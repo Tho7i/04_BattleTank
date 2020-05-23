@@ -8,6 +8,7 @@
 
 // Forward declaration
 class UTankBarrel;
+class UTankTurret;
 
 
 //Holds barrel's properties and Elevate method
