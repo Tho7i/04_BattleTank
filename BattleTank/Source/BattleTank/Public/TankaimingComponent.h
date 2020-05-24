@@ -22,6 +22,7 @@ public:
 	UTankaimingComponent();
 
 	void SetBarrelReference(UTankBarrel* BarrelToSet);
+	void SetTurretReference(UTankTurret* TurretToSet);
 
 protected:
 
@@ -31,6 +32,8 @@ public:
 
 private:
 	UTankBarrel* Barrel = nullptr;
+	UTankTurret* Turret = nullptr;
 
 	void MoveBarrel(FVector AimDirection);
+	void MoveTurret(FVector AimDirection);
 };

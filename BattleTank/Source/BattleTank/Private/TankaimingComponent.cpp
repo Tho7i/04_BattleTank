@@ -23,9 +23,15 @@ void UTankaimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet)
 	Barrel = BarrelToSet;
 }
 
+void UTankaimingComponent::SetTurretReference(UTankTurret* TurretToSet)
+{
+	Turret = TurretToSet;
+}
+
 void UTankaimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 {
 	if (!Barrel) { return; }
+	if (!Turret) { return; }
 
 	FVector OutLaunchVelocity;
 	FVector StartLocation = Barrel->GetSocketLocation(FName("Bullet"));
@@ -46,6 +52,7 @@ void UTankaimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	{
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
 		MoveBarrel(AimDirection);
+		MoveTurret(AimDirection);
 
 		auto Time = GetWorld()->GetTimeSeconds();
 		UE_LOG(LogTemp, Warning, TEXT("%f: Aim solution found"), Time);
@@ -65,4 +72,13 @@ void UTankaimingComponent::MoveBarrel(FVector AimDirection)
 	auto DeltaRotator = AimAsRotator - BarrelRotator;
 
 	Barrel->Elevate(DeltaRotator.Pitch);
+}
+
+void UTankaimingComponent::MoveTurret(FVector AimDirection)
+{
+	auto TurretRotator = Turret->GetForwardVector().Rotation();
+	auto AimAsRotator = AimDirection.Rotation();
+	auto DeltaRotator = AimAsRotator - TurretRotator;
+
+	Turret->Rotate(DeltaRotator.Yaw);
 }
