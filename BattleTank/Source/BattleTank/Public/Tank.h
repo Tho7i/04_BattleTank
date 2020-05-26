@@ -21,19 +21,22 @@ public:
 	ATank();
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetBarrelReference(UTankBarrel* BarrelToSet);
+		void SetBarrelReference(UTankBarrel* BarrelToSet);
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetTurretReference(UTankTurret* TurretToSet);
+		void SetTurretReference(UTankTurret* TurretToSet);
 
 	UFUNCTION(BlueprintCallable)
-	void Fire();
+		void Fire();
 
-	UPROPERTY(EditAnywhere, Category = Firing)
-	float LaunchSpeed = 10000;
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+		float ReloadTime = 3.f;
 
-	UPROPERTY(EditAnywhere, Category = Setup)
-	TSubclassOf<AProjectile> ProjectileBlueprint;
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+		float LaunchSpeed = 10000;
+
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
+		TSubclassOf<AProjectile> ProjectileBlueprint;
 
 protected:
 	// Called when the game starts or when spawned
@@ -49,7 +52,7 @@ public:
 
 	UTankBarrel* Barrel = nullptr;
 
-	float ReloadTime = 3.f;
-	double LastTimeFired = -3;
+
+	float LastTimeFired = 0.f;
 
 };
