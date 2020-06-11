@@ -9,6 +9,7 @@
 class UTankBarrel;
 class UTankTurret;
 class UTankaimingComponent;
+class UTankMovementComponent;
 class AProjectile;
 
 UCLASS()
@@ -43,6 +44,9 @@ protected:
 	virtual void BeginPlay() override;
 
 	UTankaimingComponent* TankAimingComponent = nullptr;
+
+	UPROPERTY(BlueprintReadOnly)
+	UTankMovementComponent* TankMovementComponent = nullptr;
 
 public:
 	// Called to bind functionality to input
